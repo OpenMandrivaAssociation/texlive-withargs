@@ -6,7 +6,7 @@
 # catalog-version undef
 Name:		texlive-withargs
 Version:	0.2.0
-Release:	1
+Release:	2
 Summary:	TeXLive withargs package
 Group:		Publishing
 URL:		http://tug.org/texlive

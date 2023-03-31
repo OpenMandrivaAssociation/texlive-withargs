@@ -1,6 +1,6 @@
 Name:		texlive-withargs
 Version:	52641
-Release:	1
+Release:	2
 Summary:	TeXLive withargs package
 Group:		Publishing
 URL:		http://tug.org/texlive

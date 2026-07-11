@@ -1,43 +1,25 @@
-Name:		texlive-withargs
-Version:	52641
-Release:	2
-Summary:	TeXLive withargs package
+%global tl_name withargs
+%global tl_revision 76924
+
+Name:		texlive-%{tl_name}
+Epoch:		1
+Version:	0.3.1
+Release:	%{tl_revision}.1
+Summary:	In-place argument substitution
 Group:		Publishing
-URL:		https://tug.org/texlive
-License:	http://www.tug.org/texlive/LICENSE.TL
-Source0:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/withargs.r%{version}.tar.xz
-Source1:	http://mirrors.ctan.org/systems/texlive/tlnet/archive/withargs.doc.r%{version}.tar.xz
+URL:		https://www.ctan.org/tex-archive/macros/latex/contrib/withargs
+License:	lppl1.3
+Source0:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/withargs.r%{tl_revision}.tar.xz
+Source1:	https://mirrors.ctan.org/systems/texlive/tlnet/archive/withargs.doc.r%{tl_revision}.tar.xz
 BuildArch:	noarch
-BuildRequires:	texlive-tlpkg
-Requires(pre):	texlive-tlpkg
-Requires(post):	texlive-kpathsea
+BuildSystem:	texlive
+Provides:	texlive(%{tl_name}) = %{tl_revision}
 
 %description
-TeXLive withargs package.
+The \withargs command provides a clean way to populate a template
+(containing #1, #2, etc.) using LaTeX argument substitution. It also
+allows you to carefully control argument expansion using a LaTeX3-style
+argument specification. Uses range from creating readable string
+templates (akin to C's printf function) to performing otherwise complex
+token-list manipulation.
 
-%post
-%{_sbindir}/texlive.post
-
-%postun
-if [ $1 -eq 0 ]; then
-	%{_sbindir}/texlive.post
-fi
-
-#-----------------------------------------------------------------------
-%files
-%{_texmfdistdir}/tex/latex/withargs/withargs-dry.sty
-%{_texmfdistdir}/tex/latex/withargs/withargs-packagedoc.cls
-%{_texmfdistdir}/tex/latex/withargs/withargs.sty
-%doc %{_texmfdistdir}/doc/latex/withargs/README
-%doc %{_texmfdistdir}/doc/latex/withargs/withargs.pdf
-%doc %{_texmfdistdir}/doc/latex/withargs/withargs.tex
-
-#-----------------------------------------------------------------------
-%prep
-%autosetup -p1 -c -a1
-
-%build
-
-%install
-mkdir -p %{buildroot}%{_texmfdistdir}
-cp -fpar tex doc %{buildroot}%{_texmfdistdir}
